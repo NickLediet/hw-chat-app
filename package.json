@@ -4,7 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "dev": "concurrently --kill-others \"node server.js\" \"cd socket-client && yarn start\""
+    "dev": "concurrently --kill-others \"nodemon server.js\" \"cd socket-client && npm run start\"",
+    "bootstrap": "npm install && cd socket-client && npm install"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +16,7 @@
     "socket.io-client": "^2.0.4"
   },
   "devDependencies": {
-    "concurrently": "^3.5.1"
+    "concurrently": "^3.5.1",
+    "nodemon": "^1.14.11"
   }
 }
