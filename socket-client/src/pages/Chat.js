@@ -32,8 +32,6 @@ class Chat extends Component {
     this.message.value = "" // reset chatbox
   }
 
-  setColor = color => this.setState({color})
-
   render() {
     // SOCKET INIT
     const socket = socketIOClient(this.state.endpoint)
