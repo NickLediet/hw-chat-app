@@ -1,4 +1,4 @@
-##Chat Application
+# Chat Application
 This is a chat application developed for an school assignment.  It is built with Express, Socket.io, React and Redux
 
 ### Installation
