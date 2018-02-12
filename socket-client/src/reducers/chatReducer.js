@@ -5,7 +5,7 @@ import {
 
 const initialState = {
   messages: [],
-  username: "unknown"
+  username: ""
 }
 const chatReducer = (state=initialState, action) => {
   switch (action.type) {
