@@ -4,7 +4,7 @@
 
 import React, { Component } from 'react';
 import socketIOClient from 'socket.io-client'
-import {Route, matchPath} from 'react-router'
+import {Route, matchPath, Redirect} from 'react-router'
 import {connect} from 'react-redux'
 
 import '../Chat.css'
@@ -25,7 +25,10 @@ class Chat extends Component {
   }
 
   sendMessage = (socket) => {
-    socket.emit('chat message', this.message.value) // Send message to socket
+    socket.emit('chat message', {
+      msg: this.message.value,
+      username: this.props.username
+    }) // Send message to socket
     this.message.value = "" // reset chatbox
   }
 
@@ -35,7 +38,9 @@ class Chat extends Component {
     // SOCKET INIT
     const socket = socketIOClient(this.state.endpoint)
     socket.on('chat message', message => this.props.addMessage(message))
-    return (
+
+    return this.props.username === "" ? <Redirect to="/home" /> :
+    (
     <div className="container">
       <div className="row chat-window col-10 mt-4">
           <div className="col-xs-12 col-md-12">
@@ -50,10 +55,10 @@ class Chat extends Component {
                       {          
                         this.props.messages.length > 0 ? 
                         this.props.messages.map((el, i) => 
-                              <div className={`col-md-10 col-xs-10 ${i % 2 == 0 ? 'offset-2' : ''}`}>
+                              <div className={`col-md-10 col-xs-10 ${el.username == this.props.username ? 'offset-2' : ''}`}>
                                   <div className="messages msg_sent">
-                                      {el}
-                                      <time datetime={new Date()}>Timothy</time>
+                                      {el.msg}
+                                      <time>{el.username}</time>
                                   </div>
                               </div>
                         ) : 
