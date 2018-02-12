@@ -28,7 +28,7 @@ class App extends Component {
     })
     return (
       <div>
-        <Route path="/home" component={Home} />
+        <Route path="/" component={Home} />
         <Route path="/chat" component={Chat} />
       </div>
     );
