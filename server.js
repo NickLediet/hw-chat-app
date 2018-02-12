@@ -19,6 +19,11 @@ io.on('connection', socket => {
     io.sockets.emit('change color', color)
   })
 
+  socket.on("chat message",  message => {
+    console.log(message) // TODO: remove logging
+    io.sockets.emit("chat message", message)
+  })
+
   socket.on('disconnect', () => {
     console.log('user disconnected')
   })
